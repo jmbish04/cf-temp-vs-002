@@ -3,11 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "npx wrangler dev",
     "build": "npm run -w ui build && esbuild src/index.ts --bundle --outdir=dist --format=esm",
-    "start": "wrangler dev",
-    "migrate:local": "wrangler d1 execute rules_orchestrator --local --file=./schema.sql",
-    "migrate:prod": "wrangler d1 execute rules_orchestrator --file=./schema.sql",
+    "start": "npx wrangler dev",
+    "deploy": "npm run build && npx wrangler deploy",
+    "deploy:migrate": "npm run build && npm run migrate:remote && npx wrangler deploy"
+    "migrate:local": "npx wrangler d1 execute DB --local --file=./schema.sql --local",
+    "migrate:remote": "npx wrangler d1 execute DB --file=./schema.sql --remote",
     "test": "vitest"
   },
   "dependencies": {

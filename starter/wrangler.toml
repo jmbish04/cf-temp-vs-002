@@ -1,0 +1,74 @@
+name = "jules-shadcn-vue-worker"
+main = "dist/index.js"
+compatibility_date = "2025-08-01"
+node_compat = true
+
+[build]
+command = "npm run build"   # builds API + UI
+
+[assets]
+directory = "ui/dist"       # serve Vue build as static assets
+
+########################################
+# Bindings: predeclared for all workers
+########################################
+
+# --- D1 (primary app DB)
+[[d1_databases]]
+binding = "DB"
+database_name = "rules_orchestrator"
+database_id = "REPLACE_D1_ID"
+
+# --- KV (sessions/cache/config)
+[[kv_namespaces]]
+binding = "KV"
+id = "REPLACE_KV_ID"
+
+# --- R2 (objects / large artifacts)
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "REPLACE_R2_BUCKET"
+
+# --- Durable Objects (stateful actors)
+[[durable_objects.bindings]]
+name = "STATE_DO"
+class_name = "StateDO"
+
+# --- Queues (async jobs)
+[[queues.producers]]
+binding = "JOBS_OUT"
+queue = "REPLACE_QUEUE_NAME"
+
+[[queues.consumers]]
+queue = "REPLACE_QUEUE_NAME"
+max_batch_size = 50
+max_batch_timeout = 2
+
+# --- Workers AI
+[ai]
+binding = "AI"
+
+# --- Vectorize (semantic index)
+[[vectorize]]
+binding = "VEC"
+index_name = "REPLACE_VECTOR_INDEX"
+
+# --- Hyperdrive (Postgres/MySQL passthrough)
+[[hyperdrive]]
+binding = "HD"
+id = "REPLACE_HYPERDRIVE_ID"
+
+# --- Analytics Engine (telemetry)
+[[analytics_engine_datasets]]
+binding = "AE"
+dataset = "rules_events"
+
+# --- Environment variables
+[vars]
+REPO_RULES_DIR = "code-rules"
+RULE_FILENAMES = "PROJECT_RULES.md,AGENT_RULES.json"
+DEFAULT_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct"
+
+# --- Secrets to set via wrangler secret put
+# GITHUB_TOKEN
+# OPENAI_API_KEY (optional)

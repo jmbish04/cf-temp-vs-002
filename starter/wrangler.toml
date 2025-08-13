@@ -1,4 +1,4 @@
-name = "jules-shadcn-vue-worker"
+name = "cf-temp-vs-002"
 main = "dist/index.js"
 compatibility_date = "2025-08-01"
 node_compat = true
@@ -14,49 +14,49 @@ directory = "ui/dist"       # serve Vue build as static assets
 ########################################
 
 # --- D1 (primary app DB)
-[[d1_databases]]
-binding = "DB"
-database_name = "rules_orchestrator"
-database_id = "REPLACE_D1_ID"
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "rules_orchestrator"
+# database_id = "REPLACE_D1_ID"
 
 # --- KV (sessions/cache/config)
-[[kv_namespaces]]
-binding = "KV"
-id = "REPLACE_KV_ID"
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "REPLACE_KV_ID"
 
 # --- R2 (objects / large artifacts)
-[[r2_buckets]]
-binding = "R2"
-bucket_name = "REPLACE_R2_BUCKET"
+# [[r2_buckets]]
+# binding = "R2"
+# bucket_name = "REPLACE_R2_BUCKET"
 
 # --- Durable Objects (stateful actors)
-[[durable_objects.bindings]]
-name = "STATE_DO"
-class_name = "StateDO"
+# [[durable_objects.bindings]]
+# name = "STATE_DO"
+# class_name = "StateDO"
 
 # --- Queues (async jobs)
-[[queues.producers]]
-binding = "JOBS_OUT"
-queue = "REPLACE_QUEUE_NAME"
+# [[queues.producers]]
+# binding = "JOBS_OUT"
+# queue = "REPLACE_QUEUE_NAME"
 
-[[queues.consumers]]
-queue = "REPLACE_QUEUE_NAME"
-max_batch_size = 50
-max_batch_timeout = 2
+# [[queues.consumers]]
+# queue = "REPLACE_QUEUE_NAME"
+# max_batch_size = 50
+# max_batch_timeout = 2
 
 # --- Workers AI
 [ai]
 binding = "AI"
 
 # --- Vectorize (semantic index)
-[[vectorize]]
-binding = "VEC"
-index_name = "REPLACE_VECTOR_INDEX"
+# [[vectorize]]
+# binding = "VEC"
+# index_name = "REPLACE_VECTOR_INDEX"
 
 # --- Hyperdrive (Postgres/MySQL passthrough)
-[[hyperdrive]]
-binding = "HD"
-id = "REPLACE_HYPERDRIVE_ID"
+# [[hyperdrive]]
+# binding = "HD"
+# id = "REPLACE_HYPERDRIVE_ID"
 
 # --- Analytics Engine (telemetry)
 [[analytics_engine_datasets]]

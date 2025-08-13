@@ -1,10 +1,28 @@
-"scripts": {
-  "dev": "npx wrangler dev",
-  "build": "npm run -w ui build && esbuild src/index.ts --bundle --outfile=dist/index.js --format=esm --platform=browser",
-  "start": "npx wrangler dev",
-  "deploy": "npm run build && wrangler deploy",
-  "deploy:migrate": "npm run build && npm run migrate:remote && npx wrangler deploy",
-  "migrate:local": "npx wrangler d1 execute DB --local --file=./schema.sql",
-  "migrate:remote": "npx wrangler d1 execute DB --remote --file=./schema.sql",
-  "test": "vitest"
+{
+  "name": "cf-temp-vs-002",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx wrangler dev",
+    "build": "npm run -w ui build && esbuild src/index.ts --bundle --outfile=dist/index.js --format=esm --platform=browser",
+    "start": "npx wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:migrate": "npm run build && npm run migrate:remote && npx wrangler deploy",
+    "migrate:local": "npx wrangler d1 execute DB --local --file=./schema.sql",
+    "migrate:remote": "npx wrangler d1 execute DB --remote --file=./schema.sql",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "hono": "^4.6.9"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "@cloudflare/vitest-pool-workers": "^0.4.5",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.4"
+  },
+  "workspaces": [
+    "ui"
+  ]
 }
